@@ -1,5 +1,10 @@
 # Term Assignment
 
+## Group
+- Dylan White, A01467430
+- Marco Andrada, A01467309
+- Sam Blair, A01457176
+
 ## Introduction
 
 In this assignment, you will demonstrate an ability to make a multi-page app, with no need to write front-end JavaScript. You will use Express.js, including a templating engine, to implement multiple routes across multiple resources, and you will use passport to allow users to login.
