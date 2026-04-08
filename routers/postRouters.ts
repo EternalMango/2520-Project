@@ -20,6 +20,8 @@ router.post("/create", ensureAuthenticated, async (req, res) => {
 
 router.get("/show/:postid", async (req, res) => {
   // ⭐ TODO
+  // req.params.postid
+  //
   res.render("individualPost");
 });
 
