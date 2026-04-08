@@ -5,8 +5,11 @@ const router = express.Router();
 import { ensureAuthenticated } from "../middleware/checkAuth";
 
 router.get("/", async (req, res) => {
-  const posts = await database.getPosts(20);
-  const user = await req.user;
+  let posts = await database.getPosts(20);
+  posts = posts.map((post) => {
+    return { ...post, creator: database.getUser(post.creator) };
+  });
+  const user = await req.user; //
   res.render("posts", { posts, user });
 });
 
@@ -46,7 +49,7 @@ router.post(
   ensureAuthenticated,
   async (req, res) => {
     // ⭐ TODO
-  }
+  },
 );
 
 export default router;
