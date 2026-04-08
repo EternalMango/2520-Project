@@ -5,8 +5,8 @@ async function getPosts(n = 5, sub = undefined) {
   return db.getPosts(n, sub);
 }
 
-function getUser(id: number) {
+async function getUser(id: string) {
   return db.getUser(id);
 }
 
-export { getPosts, getUser };
+export { getPosts, getUser};
