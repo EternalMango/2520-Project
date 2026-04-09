@@ -23,8 +23,17 @@ router.post("/create", ensureAuthenticated, async (req, res) => {
 
 router.get("/show/:postid", async (req, res) => {
   // ⭐ TODO
+  //   shows post title, post link, timestamp, and creator
+  // also has a list of all comments related to this post
+  // each of these should show the comment description, creator, and timestamp
+  // optionally, each comment could have a link to delete it
+  // if you're logged in, a form for commenting should show
   // req.params.postid
   let posts = await database.getPosts(1, req.params.postid);
+  posts = posts.map((post) => {
+    return { ...post, creator: database.getUser(post.creator) };
+  });
+  const user = await req.user;
   res.render("individualPost", { posts });
 });
 
