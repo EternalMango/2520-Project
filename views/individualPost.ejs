@@ -18,7 +18,11 @@
         <a role="button" href="/posts">Home</a>
       </div>
       <div>
-        <p>Implement this page yourself. It is from individualPost.ejs</p>
+        <% posts.forEach(post => { %>
+          <a href="/posts/show/<%=post.id%>"><%= post.title %></a>
+          <p><%= post.description %></p>
+          <p>Created by: <%= post.creator.uname %></p>
+        <% }) %>
       </div>
     </main>
   </body>
