@@ -13,13 +13,12 @@ function getSubs() {
   return db.getSubs();
 }
 
+function getPost(id: string) {
+  return db.getPost(id);
+}
+
 export { 
   getPosts, 
   getUser,
   getSubs
 };
-function getPost(id: string) {
-  return db.getPost(id);
-}
-
-export { getPosts, getUser, getPost };
