@@ -9,4 +9,12 @@ function getUser(id: string) {
   return db.getUser(id);
 }
 
-export { getPosts, getUser };
+function getSubs() {
+  return db.getSubs();
+}
+
+export { 
+  getPosts, 
+  getUser,
+  getSubs
+};

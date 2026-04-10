@@ -30,7 +30,7 @@ const posts = {
     description:
       "New mochi donut shop, Mochido, is set to open later this week.",
     creator: 1,
-    subgroup: "food",
+    subgroup: "coding",
     timestamp: 1643648446955,
   },
   102: {
@@ -40,7 +40,7 @@ const posts = {
     description:
       "An overview of databases that pair well with modern application and compute providers.",
     creator: 4,
-    subgroup: "coding",
+    subgroup: "food",
     timestamp: 1642611742010,
   },
 };
