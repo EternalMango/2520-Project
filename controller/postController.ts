@@ -9,4 +9,8 @@ function getUser(id: string) {
   return db.getUser(id);
 }
 
-export { getPosts, getUser };
+function getPost(id: string) {
+  return db.getPost(id);
+}
+
+export { getPosts, getUser, getPost };
