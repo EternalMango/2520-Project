@@ -17,8 +17,11 @@
         <h1>View Post</h1>
         <a role="button" href="/posts">Home</a>
       </div>
+      <h2><%= postids.title %></h2>
       <div>
-        <p>Implement this page yourself. It is from individualPost.ejs</p>
+        <!-- <a href="/posts/show/<%=postids.id%>"><%= postids.title %></a> -->
+        <p><%= postids.description %></p>
+        <p>Created by: <%= postids.creator.uname %></p>
       </div>
     </main>
   </body>

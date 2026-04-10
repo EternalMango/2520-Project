@@ -24,8 +24,9 @@ router.post("/create", ensureAuthenticated, async (req, res) => {
 router.get("/show/:postid", async (req, res) => {
   // ⭐ TODO
   // req.params.postid
-  //
-  res.render("individualPost");
+  let postids = await database.getPost(req.params.postid); // gets specifc post
+  const user = await req.user;
+  res.render("individualPost", { postids, user });
 });
 
 router.get("/edit/:postid", ensureAuthenticated, async (req, res) => {
