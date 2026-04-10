@@ -25,9 +25,6 @@ router.get("/show/:postid", async (req, res) => {
   // ⭐ TODO
   // req.params.postid
   let postids = await database.getPost(req.params.postid); // gets specifc post
-  // posts = posts.map((post) => {
-  //   return { ...post, creator: database.getUser(post.creator) };
-  // });
   const user = await req.user;
   res.render("individualPost", { postids, user });
 });
