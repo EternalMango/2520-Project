@@ -17,12 +17,11 @@
         <h1>View Post</h1>
         <a role="button" href="/posts">Home</a>
       </div>
+      <h2>Hello</h2>
       <div>
-        <% posts.forEach(post => { %>
-          <a href="/posts/show/<%=post.id%>"><%= post.title %></a>
-          <p><%= post.description %></p>
-          <p>Created by: <%= post.creator.uname %></p>
-        <% }) %>
+        <a href="/posts/show/<%=postids.id%>"><%= postids.title %></a>
+        <p><%= postids.description %></p>
+        <p><%= postids></p>
       </div>
     </main>
   </body>
