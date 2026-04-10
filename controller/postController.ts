@@ -18,3 +18,8 @@ export {
   getUser,
   getSubs
 };
+function getPost(id: string) {
+  return db.getPost(id);
+}
+
+export { getPosts, getUser, getPost };
