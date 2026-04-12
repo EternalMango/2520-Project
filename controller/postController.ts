@@ -1,7 +1,7 @@
 import * as db from "../fake-db";
 
 // Make calls to your db from this file!
-async function getPosts(n = 5, sub = undefined) {
+async function getPosts(n = 5, sub:string) {
   return db.getPosts(n, sub);
 }
 
@@ -9,8 +9,17 @@ function getUser(id: string) {
   return db.getUser(id);
 }
 
+function getSubs() {
+  return db.getSubs();
+}
+
 function getPost(id: string) {
   return db.getPost(id);
 }
 
-export { getPosts, getUser, getPost };
+export { 
+  getPosts, 
+  getUser,
+  getSubs
+};
+
