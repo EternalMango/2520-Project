@@ -2,8 +2,8 @@
 const users = {
   1: {
     id: 1,
-    uname: "alice",
-    password: "alpha",
+    uname: "alice123",
+    password: "alice123!",
   },
   2: {
     id: 2,
@@ -75,10 +75,14 @@ function getUser(id) {
   return users[id];
 }
 
-function getUserByUsername(uname: any) {
-  return getUser(
-    Object.values(users).filter((user) => user.uname === uname)[0].id
-  );
+function getUserByUsername(uname: string) {
+  const user = Object.values(users).find((u) => u.uname === uname);
+
+  if (!user) {
+    return null;
+  }
+
+  return user;
 }
 
 function getVotesForPost(post_id) {
