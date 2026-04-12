@@ -101,7 +101,7 @@ function decoratePost(post) {
  * @param {*} n how many posts to get, defaults to 5
  * @param {*} sub which sub to fetch, defaults to all subs
  */
-function getPosts(n = 5, sub = string) {
+function getPosts(n = 5, sub) {
   let allPosts = Object.values(posts);
   if (sub) {
     allPosts = allPosts.filter((post) => post.subgroup === sub);
@@ -150,7 +150,7 @@ function deletePost(post_id) {
 }
 
 function getSubs() {
-  return Array.from(new Set(Object.values(posts).map((post) => post.subgroup)));
+  return Array.from(new Set(Object.values(posts).sort().map((post) => post.subgroup)));
 }
 
 function addComment(post_id, creator, description) {

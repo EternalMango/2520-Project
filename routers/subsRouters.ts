@@ -5,9 +5,9 @@ const router = express.Router();
 
 router.get("/list", async (req, res) => {
   // ⭐ TODO
-  let sublist = await database.getSubs();
-  //console.log(sublist);
-  res.render("subs", {sublist});
+  let sublist = await database.getSubs().sort();
+  //console.log(Array.from(sublist));
+  res.render("subs", { sublist });
 });
 
 router.get("/show/:subname", async (req, res) => {
