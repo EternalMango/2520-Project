@@ -30,7 +30,7 @@ const posts = {
     description:
       "New mochi donut shop, Mochido, is set to open later this week.",
     creator: 1,
-    subgroup: "coding",
+    subgroup: "food",
     timestamp: 1643648446955,
   },
   102: {
@@ -40,8 +40,8 @@ const posts = {
     description:
       "An overview of databases that pair well with modern application and compute providers.",
     creator: 4,
-    subgroup: "food",
-    timestamp: 1642611742010,
+    subgroup: "coding",
+    timestamp: 1642611742010
   },
 };
 
@@ -101,7 +101,7 @@ function decoratePost(post) {
  * @param {*} n how many posts to get, defaults to 5
  * @param {*} sub which sub to fetch, defaults to all subs
  */
-function getPosts(n = 5, sub = undefined) {
+function getPosts(n = 5, sub = string) {
   let allPosts = Object.values(posts);
   if (sub) {
     allPosts = allPosts.filter((post) => post.subgroup === sub);

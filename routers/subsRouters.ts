@@ -12,7 +12,9 @@ router.get("/list", async (req, res) => {
 
 router.get("/show/:subname", async (req, res) => {
   // ⭐ TODO
-  res.render("sub");
+  let currentsub = await database.getPosts(20, req.params.subname);
+  const subpost = await req.body.subgroup;
+  res.render("sub", { currentsub });
 });
 
-export default router;
+export default router;  
