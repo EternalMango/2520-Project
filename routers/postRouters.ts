@@ -20,13 +20,16 @@ router.get("/create", ensureAuthenticated, (req, res) => {
 
 router.post("/create", ensureAuthenticated, async (req, res) => {
   // ⭐ TODO
-  const {title, post, description, link, subgroup} = req.body;
+  const {title, link, description, subgroup} = req.body;
   const creator = (await req.user).id;
-  console.log({ creator });
+  //console.log({ creator });
   const newpost = await database.createPost(title, link, creator, description, subgroup);
   res.render("createPosts")
+  console.log(newpost)
   //res.render("individualPost", { database.getPost(), currentuser});
   //res.redirect("individualPost", { newpost })
+
+  //res.redirect("individualPost", {}) //this should redirect to the individual post you just made
 });
 
 router.get("/show/:postid", async (req, res) => {
