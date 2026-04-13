@@ -20,11 +20,10 @@ router.get("/create", ensureAuthenticated, (req, res) => {
 
 router.post("/create", ensureAuthenticated, async (req, res) => {
   // ⭐ TODO
-  const {title, post, subgroup} = req.body;
+  const {title, post, description, link, subgroup} = req.body;
   const creator = (await req.user).id;
   console.log({ creator });
-  const link = "placeholder";
-  const newpost = await database.createPost(title, link, creator, post, subgroup);
+  const newpost = await database.createPost(title, link, creator, description, subgroup);
   res.render("createPosts")
   //res.render("individualPost", { database.getPost(), currentuser});
   //res.redirect("individualPost", { newpost })
