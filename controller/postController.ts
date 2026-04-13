@@ -17,9 +17,14 @@ function getPost(id: string) {
   return db.getPost(id);
 }
 
+async function createPost(title: string, link: string, creator: string, description: string, subgroup:string) {
+  return db.addPost(title, link, creator, description, subgroup);
+}
+
 export { 
   getPosts, 
   getUser,
-  getSubs
+  getSubs,
+  createPost
 };
 
