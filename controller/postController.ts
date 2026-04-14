@@ -31,4 +31,4 @@ async function createPost(
   return db.addPost(title, link, creator, description, subgroup);
 }
 
-export { getPosts, getUser, getSubs, createPost };
+export { getPosts, getUser, getSubs, createPost, getPost, editPost };
