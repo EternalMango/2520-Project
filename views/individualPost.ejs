@@ -18,10 +18,19 @@
         <a role="button" href="/posts">Home</a>
       </div>
       <h2><%= postids.title %></h2>
+      <a href="/posts/show/<%=postids.id%>"><%= postids.link %></a>
       <div>
-        <!-- <a href="/posts/show/<%=postids.id%>"><%= postids.title %></a> -->
         <p><%= postids.description %></p>
         <p>Created by: <%= postids.creator.uname %></p>
+        <p>Date Created: <%= postids.timestamp %></p>
+      </div>
+      <div>
+        <!-- here is where add comment will go -->
+        <a role="button" href="/posts/comment/<%=postids.id%>">add comment</a>
+      </div>
+      <div>
+        <!--here is where edit messgae will go-->
+        <a role="button" href="/posts/edit/<%=postids.id%>">Edit Post</a>
       </div>
     </main>
   </body>

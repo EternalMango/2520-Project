@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.classless.min.css"
+    />
+    <link href="/css/style.css" rel="stylesheet" />
+    <title>Edit</title>
+  </head>
+  <body>
+    <main>
+      <h1>Edit your Post</h1>
+      <form
+        name="changes"
+        action="/posts/edit/<%= toEdit.id %>"
+        type="text"
+        method="post"
+      >
+        <p>change title (leave blank to keep the same)</p>
+        <input type="text" name="titleChange" />
+        <p>change description (leave blank to keep the same)</p>
+        <input type="text" name="descriptionChange" />
+        <button type="submit">Submit</button>
+      </form>
+      <p></p>
+      <a role="button" href="/posts">back to posts</a>
+    </main>
+  </body>
+</html>
