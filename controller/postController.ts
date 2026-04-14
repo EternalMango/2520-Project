@@ -13,4 +13,8 @@ function getPost(id: string) {
   return db.getPost(id);
 }
 
-export { getPosts, getUser, getPost };
+function editPost(id: string, changes = {}) {
+  return db.editPost(id, changes);
+}
+
+export { getPosts, getUser, getPost, editPost };
