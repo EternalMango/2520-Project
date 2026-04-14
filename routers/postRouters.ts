@@ -5,6 +5,7 @@ const router = express.Router();
 import { ensureAuthenticated } from "../middleware/checkAuth";
 import { title } from "process";
 import { create } from "domain";
+import { link } from "fs";
 
 router.get("/", async (req, res) => {
   let posts = await database.getPosts(20);
@@ -21,12 +22,18 @@ router.get("/create", ensureAuthenticated, (req, res) => {
 
 router.post("/create", ensureAuthenticated, async (req, res) => {
   // ⭐ TODO
-  const {title, link, description, subgroup} = req.body;
+  const { title, link, description, subgroup } = req.body;
   const creator = (await req.user).id;
   //console.log({ creator });
-  const newpost = await database.createPost(title, link, creator, description, subgroup);
-  res.render("createPosts")
-  console.log(newpost)
+  const newpost = await database.createPost(
+    title,
+    link,
+    creator,
+    description,
+    subgroup,
+  );
+  res.render("createPosts");
+  console.log(newpost);
   //res.render("individualPost", { database.getPost(), currentuser});
   //res.redirect("individualPost", { newpost })
 
@@ -55,6 +62,8 @@ router.post("/edit/:postid", ensureAuthenticated, async (req, res) => {
   const changes = {
     title: req.body.titleChange,
     description: req.body.descriptionChange,
+    link: req.body.linkChange,
+    subgroup: req.body.subChange,
   };
   const postEdits = await database.editPost(req.params.postid, changes);
   const user = await req.user;
