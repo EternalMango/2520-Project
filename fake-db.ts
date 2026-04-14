@@ -2,8 +2,8 @@
 const users = {
   1: {
     id: 1,
-    uname: "alice",
-    password: "alice123",
+    uname: "alice123",
+    password: "alice123!",
   },
   2: {
     id: 2,
@@ -41,7 +41,7 @@ const posts = {
       "An overview of databases that pair well with modern application and compute providers.",
     creator: 4,
     subgroup: "coding",
-    timestamp: 1642611742010,
+    timestamp: 1642611742010
   },
 };
 
@@ -75,10 +75,14 @@ function getUser(id) {
   return users[id];
 }
 
-function getUserByUsername(uname: any) {
-  return getUser(
-    Object.values(users).filter((user) => user.uname === uname)[0].id,
-  );
+function getUserByUsername(uname: string) {
+  const user = Object.values(users).find((u) => u.uname === uname);
+
+  if (!user) {
+    return null;
+  }
+
+  return user;
 }
 
 function getVotesForPost(post_id) {
@@ -101,7 +105,7 @@ function decoratePost(post) {
  * @param {*} n how many posts to get, defaults to 5
  * @param {*} sub which sub to fetch, defaults to all subs
  */
-function getPosts(n = 5, sub = undefined) {
+function getPosts(n = 5, sub) {
   let allPosts = Object.values(posts);
   if (sub) {
     allPosts = allPosts.filter((post) => post.subgroup === sub);
@@ -150,7 +154,7 @@ function deletePost(post_id) {
 }
 
 function getSubs() {
-  return Array.from(new Set(Object.values(posts).map((post) => post.subgroup)));
+  return Array.from(new Set(Object.values(posts).sort().map((post) => post.subgroup)));
 }
 
 function addComment(post_id, creator, description) {
