@@ -58,7 +58,6 @@ router.get("/edit/:postid", ensureAuthenticated, async (req, res) => {
 });
 
 router.post("/edit/:postid", ensureAuthenticated, async (req, res) => {
-  // ⭐ TODO
   const changes = {
     title: req.body.titleChange,
     description: req.body.descriptionChange,
