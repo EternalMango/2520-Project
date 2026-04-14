@@ -3,7 +3,7 @@ const users = {
   1: {
     id: 1,
     uname: "alice",
-    password: "alpha",
+    password: "alice123",
   },
   2: {
     id: 2,
@@ -77,7 +77,7 @@ function getUser(id) {
 
 function getUserByUsername(uname: any) {
   return getUser(
-    Object.values(users).filter((user) => user.uname === uname)[0].id
+    Object.values(users).filter((user) => user.uname === uname)[0].id,
   );
 }
 
