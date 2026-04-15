@@ -21,10 +21,18 @@ async function createPost(title: string, link: string, creator: string, descript
   return db.addPost(title, link, creator, description, subgroup);
 }
 
+async function voteForPosts(id: string, value: number, userId: number) {
+  const votes = db.getVotesForPost(Number(id))
+  for (let vote of votes){
+    //
+  }
+}
+
 export { 
   getPosts, 
   getUser,
   getSubs,
-  createPost
+  createPost,
+  voteForPosts
 };
 

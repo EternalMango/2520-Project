@@ -8,7 +8,8 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.classless.min.css"
     />
-    <link href="/css/style.css" rel="stylesheet" />
+    <link href="/css/style.css" rel="stylesheet" href />
+    <script src="/js/voting.js" defer></script>
     <title>Homepage</title>
   </head>
   <body>
@@ -28,8 +29,36 @@
         <div class="individualPost">
           <a href="/posts/show/<%=post.id%>"><%= post.title %></a>
           <p><%= post.description %></p>
+          <!-- Likeing buttons-->
+          <div class="post-container">
+            <h3><%= post.title %></h3>
+              <span id="score-<%= post.id %>" class="tally">
+                <%= post.score %>
+              </span>
+            <% if (user) { %>
+            <div class="buttonArea">
+              <button 
+              type="button" 
+              class="vote-btn likeButton" 
+              data-postid="<%= post.id %>" 
+              data-value="1">
+              Up
+              </button>
+
+              <button 
+                type="button" 
+                class="vote-btn dislikeButton" 
+                data-postid="<%= post.id %>" 
+                data-value="-1">
+                Down
+              </button>
+            </div>
+            <% } %> 
+          </div>
+
           <p>Created by: <%= post.creator.uname %></p>
         </div>
+        <br>
         <% }) %>
       </div>
 

@@ -1,5 +1,68 @@
+body {
+  background-color: rgb(0, 0, 53);
+  color: black;
+  margin: 0;
+  min-height: 100vh;
+}
+
 .authOptions {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+}
+
+.buttonArea {
+  display: flex;
+  justify-content: left;
+  gap: 1rem;
+  
+}
+.button {
+  transition: all 0.3s ease; /* Smooth fade for colors */
+  padding: 8px 16px;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #000000; /* Black text as requested */
+}
+
+.likeButton {
+  background-color: rgb(129, 221, 124);
+  font-size: small;
+  color: black;
+  font-family: papyrus;
+  border-color: black;
+  width: 80px;
+  height: 50px;
+  
+}
+
+.likeButton:hover {
+  background-color: #158019;
+  font-weight: bold;
+}
+
+.dislikeButton {
+  background-color: rgb(231, 127, 104);
+  font-size: small;
+  color: black;
+  font-family: papyrus;
+  border-color: black;
+  width: 80px;
+  height: 50px;
+  
+}
+.dislikeButton:hover {
+  background-color: #d42a1e;
+  font-weight: bold;
+}
+
+.active-up {
+  background-color: #4caf50 !important; /* Bright Green */
+  border-color: #000000; /* Adds a black border to show it's selected */
+}
+
+.active-down {
+  background-color: #f44336 !important; /* Bright Red */
+  border-color: #000000;
 }

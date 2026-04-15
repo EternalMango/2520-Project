@@ -64,4 +64,13 @@ router.post(
   },
 );
 
+router.get("/upvote/:postid", ensureAuthenticated, async (req, res) => {
+  const user = await req.user;
+  database.voteForPost(req.params.postid, 1, user.id)
+})
+router.get("/downvote/:postid", ensureAuthenticated, async (req, res) => {
+  const user = await req.user;
+  database.voteForPost(req.params.postid, -1, user.id)
+})
+ 
 export default router;
