@@ -49,19 +49,14 @@ router.get("/show/:postid", async (req, res) => {
 router.get("/edit/:postid", ensureAuthenticated, async (req, res) => {
   // ⭐ TODO
   const toEdit = await database.getPost(req.params.postid);
-  let preEdit = {
-    title: toEdit.title,
-    description: toEdit.description,
-  };
   const user = await req.user;
-  res.render("editPost", { toEdit, preEdit, user });
+  res.render("editPost", { toEdit, user });
 });
 
 router.post("/edit/:postid", ensureAuthenticated, async (req, res) => {
   const changes = {
     title: req.body.titleChange,
     description: req.body.descriptionChange,
-    link: req.body.linkChange,
     subgroup: req.body.subChange,
   };
   const postEdits = await database.editPost(req.params.postid, changes);
