@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.classless.min.css"
+    />
+    <link href="/css/style.css" rel="stylesheet" />
+    <title>Edit</title>
+  </head>
+  <body>
+    <main>
+      <h1>Edit your Post</h1>
+      <form
+        name="changes"
+        action="/posts/edit/<%= toEdit.id %>"
+        type="text"
+        method="post"
+      >
+        <p>change title:</p>
+        <input type="text" name="titleChange" value="<%= toEdit.title %>" />
+        <p>change description:</p>
+        <input
+          type="text"
+          name="descriptionChange"
+          value="<%= toEdit.description %>"
+        />
+        <p>link:</p>
+        <input type="text" name="linkChange" value="<%= toEdit.link %>" />
+        <p>subgroup:</p>
+        <input type="text" name="subChange" value="<%= toEdit.subgroup %>" />
+        <p></p>
+        <button type="submit">Submit</button>
+      </form>
+      <p></p>
+      <a role="button" href="/posts">back to posts</a>
+    </main>
+  </body>
+</html>
