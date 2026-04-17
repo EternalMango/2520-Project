@@ -6,6 +6,7 @@ import { ensureAuthenticated } from "../middleware/checkAuth";
 import { title } from "process";
 import { create } from "domain";
 import { link } from "fs";
+import { deletePost } from "../fake-db";
 
 router.get("/", async (req, res) => {
   let posts = await database.getPosts(20);
@@ -71,10 +72,13 @@ router.post("/edit/:postid", ensureAuthenticated, async (req, res) => {
 
 router.get("/deleteconfirm/:postid", ensureAuthenticated, async (req, res) => {
   // ⭐ TODO
+  // const postId = req.params.postid;
+  res.render("deletePost", { postId: req.params.postid })
 });
 
 router.post("/delete/:postid", ensureAuthenticated, async (req, res) => {
-  // ⭐ TODO
+  const postId = req.params.postid;
+  database.deletePost(postId);
 });
 
 router.post(
