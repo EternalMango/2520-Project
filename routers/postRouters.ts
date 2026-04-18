@@ -34,10 +34,11 @@ router.post("/create", ensureAuthenticated, async (req, res) => {
     description,
     subgroup,
   );
-  res.render("createPosts");
-  console.log(newpost);
+
+  //res.render("createPosts");
+  //console.log(newpost.id);
   //res.render("individualPost", { database.getPost(), currentuser});
-  //res.redirect("individualPost", { newpost })
+  res.redirect(`/posts/show/${ newpost.id }`)
 
   //res.redirect("individualPost", {}) //this should redirect to the individual post you just made
 });
@@ -75,6 +76,7 @@ router.get("/deleteconfirm/:postid", ensureAuthenticated, async (req, res) => {
 router.post("/delete/:postid", ensureAuthenticated, async (req, res) => {
   const postId = req.params.postid;
   database.deletePost(postId);
+  res.redirect(`/posts`)
 });
 
 router.get(
