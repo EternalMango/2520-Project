@@ -182,4 +182,5 @@ export {
   getSubs,
   addComment,
   decoratePost,
+  getVotesForPost,
 };

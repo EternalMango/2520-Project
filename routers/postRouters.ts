@@ -6,6 +6,8 @@ import { ensureAuthenticated } from "../middleware/checkAuth";
 import { title } from "process";
 import { create } from "domain";
 import { appendFileSync, link } from "fs";
+import { link } from "fs";
+import { deletePost } from "../fake-db";
 
 router.get("/", async (req, res) => {
   let posts = await database.getPosts(20);
@@ -66,10 +68,13 @@ router.post("/edit/:postid", ensureAuthenticated, async (req, res) => {
 
 router.get("/deleteconfirm/:postid", ensureAuthenticated, async (req, res) => {
   // ⭐ TODO
+  // const postId = req.params.postid;
+  res.render("deletePost", { postId: req.params.postid })
 });
 
 router.post("/delete/:postid", ensureAuthenticated, async (req, res) => {
-  // ⭐ TODO
+  const postId = req.params.postid;
+  database.deletePost(postId);
 });
 
 router.get(
@@ -105,4 +110,13 @@ router.post(
   },
 );
 
+router.get("/upvote/:postid", ensureAuthenticated, async (req, res) => {
+  const user = await req.user;
+  database.voteForPost(req.params.postid, 1, user.id)
+})
+router.get("/downvote/:postid", ensureAuthenticated, async (req, res) => {
+  const user = await req.user;
+  database.voteForPost(req.params.postid, -1, user.id)
+})
+ 
 export default router;
