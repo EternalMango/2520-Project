@@ -5,7 +5,7 @@ const router = express.Router();
 import { ensureAuthenticated } from "../middleware/checkAuth";
 import { title } from "process";
 import { create } from "domain";
-import { link } from "fs";
+import { appendFileSync, link } from "fs";
 
 router.get("/", async (req, res) => {
   let posts = await database.getPosts(20);
@@ -72,11 +72,36 @@ router.post("/delete/:postid", ensureAuthenticated, async (req, res) => {
   // ⭐ TODO
 });
 
+router.get(
+  "/comments/show/:commentid",
+  ensureAuthenticated,
+  async (req, res) => {
+    const getComment = await database.getPost(req.params.commentid);
+    const user = await req.user;
+    res.render("createComment", { user, getComment });
+  },
+);
+
+router.get(
+  "/comments/deleteconfirm/:commentid",
+  ensureAuthenticated,
+  async (require, res) => {
+    // triggered by /comments/show/:commentid
+  },
+);
+
 router.post(
   "/comment-create/:postid",
   ensureAuthenticated,
   async (req, res) => {
-    // ⭐ TODO
+    const user = await req.user;
+    const creator = user.id;
+    const comments = await database.addComment(
+      req.params.postid,
+      creator,
+      req.body.comment,
+    );
+    res.redirect(`/posts/show/${req.params.postid}`);
   },
 );
 
