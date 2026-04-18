@@ -25,8 +25,22 @@
         <p>Date Created: <%= postids.timestamp %></p>
       </div>
       <div>
+        <!-- each of these should show the comment description, creator, and timestamp
+        optionally, each comment could have a link to delete it -->
         <!-- here is where add comment will go -->
-        <a role="button" href="/posts/comment/<%=postids.id%>">add comment</a>
+        <% postids.comments.forEach(comment => { %>
+            <p><%= comment.description %></p>
+            <p>Created by: <%= comment.creator.uname %></p>
+       <% }) %>
+        <form action="/posts/comment-create/<%=postids.id %>" method="post">
+          <input
+            type="text"
+            placeholder="Your comment here"
+            name="comment"
+            id=""
+          />
+          <button>add comment</button>
+        </form>
       </div>
       <div>
         <!--here is where edit messgae will go-->
