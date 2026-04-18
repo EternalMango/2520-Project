@@ -24,7 +24,7 @@ function editPost(id: string, changes = {}) {
 
 function addComment(post_id: string, creator: string, description: string) {
   return db.addComment(post_id, creator, description);
-  
+}
 function deletePost(postid: string) {
   return db.deletePost(postid);
 }
