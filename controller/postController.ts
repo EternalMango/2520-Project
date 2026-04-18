@@ -21,6 +21,10 @@ function editPost(id: string, changes = {}) {
   return db.editPost(id, changes);
 }
 
+function addComment(post_id: string, creator: string, description: string) {
+  return db.addComment(post_id, creator, description);
+}
+
 async function createPost(
   title: string,
   link: string,
@@ -31,4 +35,12 @@ async function createPost(
   return db.addPost(title, link, creator, description, subgroup);
 }
 
-export { getPosts, getUser, getSubs, createPost, getPost, editPost };
+export {
+  getPosts,
+  getUser,
+  getSubs,
+  createPost,
+  getPost,
+  editPost,
+  addComment,
+};
