@@ -22,6 +22,9 @@ function editPost(id: string, changes = {}) {
   return db.editPost(id, changes);
 }
 
+function addComment(post_id: string, creator: string, description: string) {
+  return db.addComment(post_id, creator, description);
+  
 function deletePost(postid: string) {
   return db.deletePost(postid);
 }
@@ -44,4 +47,4 @@ async function voteForPosts(id: string, value: number, userId: number) {
 }
 
 export { getPosts, getUser, getSubs, createPost,
-  voteForPosts, getPost, editPost, deletePost };
+  voteForPosts, getPost, editPost, deletePost, addComment };
