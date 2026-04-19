@@ -5,7 +5,9 @@ const router = express.Router();
 import { ensureAuthenticated } from "../middleware/checkAuth";
 import { title } from "process";
 import { create } from "domain";
+import { appendFileSync, link } from "fs";
 import { link } from "fs";
+import { deletePost } from "../fake-db";
 
 router.get("/", async (req, res) => {
   let posts = await database.getPosts(20);
@@ -32,10 +34,11 @@ router.post("/create", ensureAuthenticated, async (req, res) => {
     description,
     subgroup,
   );
-  res.render("createPosts");
-  console.log(newpost);
+
+  //res.render("createPosts");
+  //console.log(newpost.id);
   //res.render("individualPost", { database.getPost(), currentuser});
-  //res.redirect("individualPost", { newpost })
+  res.redirect(`/posts/show/${ newpost.id }`)
 
   //res.redirect("individualPost", {}) //this should redirect to the individual post you just made
 });
@@ -49,19 +52,14 @@ router.get("/show/:postid", async (req, res) => {
 router.get("/edit/:postid", ensureAuthenticated, async (req, res) => {
   // ⭐ TODO
   const toEdit = await database.getPost(req.params.postid);
-  let preEdit = {
-    title: toEdit.title,
-    description: toEdit.description,
-  };
   const user = await req.user;
-  res.render("editPost", { toEdit, preEdit, user });
+  res.render("editPost", { toEdit, user });
 });
 
 router.post("/edit/:postid", ensureAuthenticated, async (req, res) => {
   const changes = {
     title: req.body.titleChange,
     description: req.body.descriptionChange,
-    link: req.body.linkChange,
     subgroup: req.body.subChange,
   };
   const postEdits = await database.editPost(req.params.postid, changes);
@@ -71,17 +69,46 @@ router.post("/edit/:postid", ensureAuthenticated, async (req, res) => {
 
 router.get("/deleteconfirm/:postid", ensureAuthenticated, async (req, res) => {
   // ⭐ TODO
+  // const postId = req.params.postid;
+  res.render("deletePost", { postId: req.params.postid })
 });
 
 router.post("/delete/:postid", ensureAuthenticated, async (req, res) => {
-  // ⭐ TODO
+  const postId = req.params.postid;
+  database.deletePost(postId);
+  res.redirect(`/posts`)
 });
+
+router.get(
+  "/comments/show/:commentid",
+  ensureAuthenticated,
+  async (req, res) => {
+    const getComment = await database.getPost(req.params.commentid);
+    const user = await req.user;
+    res.render("createComment", { user, getComment });
+  },
+);
+
+router.get(
+  "/comments/deleteconfirm/:commentid",
+  ensureAuthenticated,
+  async (require, res) => {
+    // triggered by /comments/show/:commentid
+  },
+);
 
 router.post(
   "/comment-create/:postid",
   ensureAuthenticated,
   async (req, res) => {
-    // ⭐ TODO
+    const user = await req.user;
+    const creator = user.id;
+    const comments = await database.addComment(
+      req.params.postid,
+      creator,
+      req.body.comment,
+    );
+    res.redirect(`/posts/show/${req.params.postid}`);
   },
 );
 

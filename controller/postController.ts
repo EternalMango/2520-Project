@@ -1,3 +1,4 @@
+import { stringify } from "querystring";
 import * as db from "../fake-db";
 
 // Make calls to your db from this file!
@@ -19,6 +20,13 @@ function getPost(id: string) {
 
 function editPost(id: string, changes = {}) {
   return db.editPost(id, changes);
+}
+
+function addComment(post_id: string, creator: string, description: string) {
+  return db.addComment(post_id, creator, description);
+}
+function deletePost(postid: string) {
+  return db.deletePost(postid);
 }
 
 async function createPost(
@@ -45,4 +53,4 @@ async function voteForPosts(id: string, value: number, userId: number) {
 }
 
 export { getPosts, getUser, getSubs, createPost,
-  voteForPosts, getPost, editPost };
+  voteForPosts, getPost, editPost, deletePost, addComment };
