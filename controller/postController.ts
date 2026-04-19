@@ -34,7 +34,13 @@ async function createPost(
 async function voteForPosts(id: string, value: number, userId: number) {
   const votes = db.getVotesForPost(Number(id))
   for (let vote of votes){
-    //
+    if (userId == vote.user_id) {
+      
+    } else {
+
+    }
+// we want a new code to compile and to ping this when looping through the votes
+//this should only be for ones
   }
 }
 
