@@ -6,6 +6,10 @@ async function getPosts(n = 5, sub: string) {
   return db.getPosts(n, sub);
 }
 
+function editComment(comment_id: string, changes = {}) {
+  return db.editComment;
+}
+
 function getUser(id: string) {
   return db.getUser(id);
 }
@@ -52,4 +56,19 @@ async function createPost(
 //   }
 // }
 
-export { getPosts, getUser, getSubs, createPost, getPost, editPost, deletePost, addComment };
+function deleteComment(comment_id: string) {
+  return db.deleteComment(comment_id);
+}
+
+export {
+  getPosts,
+  getUser,
+  getSubs,
+  createPost,
+  getPost,
+  editPost,
+  deletePost,
+  addComment,
+  editComment,
+  deleteComment,
+};
