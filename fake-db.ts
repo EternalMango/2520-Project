@@ -41,7 +41,7 @@ const posts = {
       "An overview of databases that pair well with modern application and compute providers.",
     creator: 4,
     subgroup: "coding",
-    timestamp: 1642611742010
+    timestamp: 1642611742010,
   },
 };
 
@@ -154,7 +154,13 @@ function deletePost(post_id) {
 }
 
 function getSubs() {
-  return Array.from(new Set(Object.values(posts).sort().map((post) => post.subgroup)));
+  return Array.from(
+    new Set(
+      Object.values(posts)
+        .sort()
+        .map((post) => post.subgroup),
+    ),
+  );
 }
 
 function addComment(post_id, creator, description) {
@@ -170,6 +176,14 @@ function addComment(post_id, creator, description) {
   return comment;
 }
 
+function editComment(comment_id, changes = {}) {
+  let editedComments = (comments[comment_id].description = changes.description);
+}
+
+function deleteComment(comment_id) {
+  delete comments[comment_id];
+}
+
 export {
   debug,
   getUser,
@@ -183,4 +197,6 @@ export {
   addComment,
   decoratePost,
   getVotesForPost,
+  editComment,
+  deleteComment,
 };
