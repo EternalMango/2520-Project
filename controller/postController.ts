@@ -39,18 +39,17 @@ async function createPost(
   return db.addPost(title, link, creator, description, subgroup);
 }
 
-async function voteForPosts(id: string, value: number, userId: number) {
-  const votes = db.getVotesForPost(Number(id))
-  for (let vote of votes){
-    if (userId == vote.user_id) {
+// async function voteForPosts(id: string, value: number, userId: number) {
+//   const votes = db.getVotesForPost(Number(id))
+//   for (let vote of votes){
+//     if (userId == vote.user_id) {
       
-    } else {
+//     } else {
 
-    }
+//     }
 // we want a new code to compile and to ping this when looping through the votes
 //this should only be for ones
-  }
-}
+//   }
+// }
 
-export { getPosts, getUser, getSubs, createPost,
-  voteForPosts, getPost, editPost, deletePost, addComment };
+export { getPosts, getUser, getSubs, createPost, getPost, editPost, deletePost, addComment };

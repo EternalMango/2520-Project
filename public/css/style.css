@@ -18,6 +18,10 @@ body {
 
 }
 
+.tally {
+  color: white;
+}
+
 .button {
   transition: all 0.3s ease; /* Smooth fade for colors */
   padding: 8px 16px;

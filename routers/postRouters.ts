@@ -8,13 +8,11 @@ import { create } from "domain";
 import { appendFileSync, link } from "fs";
 import { link } from "fs";
 import { deletePost } from "../fake-db";
+import { getVoteForPost, getPosts } from '../fake-db';
 
 router.get("/", async (req, res) => {
-  let posts = await database.getPosts(20);
-  posts = posts.map((post) => {
-    return { ...post, creator: database.getUser(post.creator) };
-  });
-  const user = await req.user; //
+  const posts = getPosts(20);
+  const user = await req.user;
   res.render("posts", { posts, user });
 });
 
@@ -112,13 +110,10 @@ router.post(
   },
 );
 
-router.get("/upvote/:postid", ensureAuthenticated, async (req, res) => {
+router.get("/posts/upvote/:postid", async (req, res) => {
+  const posts = getPosts(20);
   const user = await req.user;
-  database.voteForPost(req.params.postid, 1, user.id)
-})
-router.get("/downvote/:postid", ensureAuthenticated, async (req, res) => {
-  const user = await req.user;
-  database.voteForPost(req.params.postid, -1, user.id)
-})
+  res.render("posts", { posts, user });
+});
  
 export default router;

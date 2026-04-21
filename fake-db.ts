@@ -85,15 +85,19 @@ function getUserByUsername(uname: string) {
   return user;
 }
 
-function getVotesForPost(post_id) {
-  return votes.filter((vote) => vote.post_id === post_id);
+function getVotesForPost(postId: number) {
+  return votes
+    .filter(v => v.post_id === postId)
+    .reduce((acc, vote) => acc + vote.value, 0);
 }
+
 
 function decoratePost(post) {
   post = {
     ...post,
     creator: users[post.creator],
     votes: getVotesForPost(post.id),
+    score: getVotesForPost(post.id),
     comments: Object.values(comments)
       .filter((comment) => comment.post_id === post.id)
       .map((comment) => ({ ...comment, creator: users[comment.creator] })),
@@ -111,7 +115,7 @@ function getPosts(n = 5, sub) {
     allPosts = allPosts.filter((post) => post.subgroup === sub);
   }
   allPosts.sort((a, b) => b.timestamp - a.timestamp);
-  return allPosts.slice(0, n);
+  return allPosts.slice(0, n).map(decoratePost);  // 👈 add .map(decoratePost) here
 }
 
 function getPost(id) {

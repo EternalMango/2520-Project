@@ -4,14 +4,32 @@
 // 1. Get ALL buttons as a group
 const btns = document.querySelectorAll(".vote-btn");
 
-btns.forEach((btn) => {
-  btn.addEventListener("click", (e) => {
+btns.forEach(async (btn) => {
+  btn.addEventListener("click", async (e) => {
     const t = e.target;
     const value = t.dataset.value;
-    const postId = t.dataset.postId;
-    fetch("/upvote/:postid", { method: "post", body: { value }, credentials: 'include'})
+    const postId = t.dataset.postid;
+
+    const response = await fetch(`/posts/upvote/${postId}`, {
+  method: "POST",
+  body: JSON.stringify({ value }),
+  headers: { "Content-Type": "application/json" },
+  credentials: "include",
+});
+
+const data = await response.json();
+document.getElementById(`score-${postId}`).textContent = data.newTotal;
+    // then update the DOM with data.newTotal
   });
 });
+
+/* 
+TODO: 
+I was unable to connect the button to the total value
+However i am able to read the table and add values to the Voting area
+Sorry we were unable to finish this project but we did have lots of fun doing it
+Your class was fun!
+*/
 
 // // 2. Loop through them (just like a list)
 // voteButtons.forEach((btn) => {

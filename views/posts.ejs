@@ -33,7 +33,7 @@
           <div class="post-container">
             <h3><%= post.title %></h3>
               <span id="score-<%= post.id %>" class="tally">
-                <%= post.score %>
+                <%= post.score || 0 %>
               </span>
             <% if (user) { %>
             <div class="buttonArea">
