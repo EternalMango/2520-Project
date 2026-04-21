@@ -1,5 +1,5 @@
 body {
-  background-color: rgb(0, 0, 53);
+  background-color: #311e1b;
   color: black;
   margin: 0;
   min-height: 100vh;
@@ -15,8 +15,9 @@ body {
   display: flex;
   justify-content: left;
   gap: 1rem;
-  
+
 }
+
 .button {
   transition: all 0.3s ease; /* Smooth fade for colors */
   padding: 8px 16px;
@@ -34,7 +35,7 @@ body {
   border-color: black;
   width: 80px;
   height: 50px;
-  
+
 }
 
 .likeButton:hover {
@@ -50,8 +51,9 @@ body {
   border-color: black;
   width: 80px;
   height: 50px;
-  
+
 }
+
 .dislikeButton:hover {
   background-color: #d42a1e;
   font-weight: bold;
@@ -65,4 +67,22 @@ body {
 .active-down {
   background-color: #f44336 !important; /* Bright Red */
   border-color: #000000;
+}
+
+/* Active Upvote (Green) */
+.active-up {
+  background-color: #00ff08 !important;
+  color: black !important;
+  border: 2px solid black;
+  border-color: #000000;
+  box-shadow: 0 0 2px 2px rgba(76, 175, 80, 0.7);
+}
+
+/* Active Downvote (Red) */
+.active-down {
+  background-color: #ff1100 !important;
+  color: black !important;
+  border: 2px solid black;
+  border-color: #000000;
+  box-shadow: 0 0 2px 2px rgba(244, 67, 54, 0.7);
 }
